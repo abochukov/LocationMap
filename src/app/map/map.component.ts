@@ -11,7 +11,6 @@ import { DataService } from '../services/data.service';
 export class MapComponent implements OnInit, AfterViewInit {
 
   private map;
-  private status;
 
   constructor(private dataService: DataService) { }
 
@@ -28,7 +27,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private initMap() {
     this.map = leaflet.map('map', {
-      center: [39.8282, -98.5795],
+      center: [43.1010, 30.5050],
       zoom: 3,
     });
 
@@ -54,7 +53,10 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     
     tiles.addTo(this.map);
-    leaflet.control.layers(baseMaps).addTo(this.map);    
+    leaflet.control.layers(baseMaps).addTo(this.map);  
+    
+    const search = leaflet.layerGroup().addTo(this.map);
+    this.map.addControl( new leaflet.Control.Search({layer: search}) );
   }
 
 }
