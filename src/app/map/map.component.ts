@@ -16,9 +16,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService
-    .getStatus();
-  
+    this.dataService.getStatus();
+    this.dataService.getPopulationDensity().subscribe(population => {
+      console.log(population)
+    });
   }
 
   ngAfterViewInit() {
@@ -50,9 +51,10 @@ export class MapComponent implements OnInit, AfterViewInit {
       "Mapnik": ch,
       "Germany": germany
     };
-  
-    leaflet.control.layers(baseMaps).addTo(this.map);
+
+    
     tiles.addTo(this.map);
+    leaflet.control.layers(baseMaps).addTo(this.map);    
   }
 
 }
