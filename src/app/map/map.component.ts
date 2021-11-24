@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as leaflet from 'leaflet';
 
+import { DataService } from '../services/data.service';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -9,10 +11,14 @@ import * as leaflet from 'leaflet';
 export class MapComponent implements OnInit, AfterViewInit {
 
   private map;
+  private status;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService
+    .getStatus();
+  
   }
 
   ngAfterViewInit() {
