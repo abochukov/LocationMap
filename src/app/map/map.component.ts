@@ -34,9 +34,24 @@ export class MapComponent implements OnInit, AfterViewInit {
     const tiles = leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       minZoom: 3,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 
+    });
+    
+    const ch = leaflet.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+      {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+      
+    const germany   = leaflet.tileLayer(
+      'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', 
+      {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+
+    const baseMaps = {
+      "Mapnik": ch,
+      "Germany": germany
+    };
+  
+    leaflet.control.layers(baseMaps).addTo(this.map);
     tiles.addTo(this.map);
   }
 
