@@ -1,3 +1,5 @@
+@import '../../assets/variables.scss';
+
 .map-container {
     position: absolute;
     top: 0;
@@ -8,10 +10,12 @@
   }
   
   .map-frame {
-    border: 2px solid black;
+    border: 2px solid $dark-blue;
     height: 100%;
+    border-radius: 15px;
   }
   
   #map {
     height: 100%;
+    border-radius: 15px;
   }
